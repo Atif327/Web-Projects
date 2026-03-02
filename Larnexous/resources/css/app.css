@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    
+    --color-neon-green: #39FF14;
+}
+
+/* Reveal on scroll animation */
+.reveal-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: transform 520ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease;
+    will-change: transform, opacity;
+}
+
+.reveal-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-card,
+    .reveal-card.is-visible {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Soft shadow token */
+.soft-shadow { box-shadow: 0 8px 30px rgba(2,6,23,0.06); }
+
+/* Card hover lift for premium feel */
+.card-hover-lift {
+    transition: transform 420ms cubic-bezier(.2,.9,.2,1), box-shadow 420ms cubic-bezier(.2,.9,.2,1);
+    will-change: transform, box-shadow;
+}
+.card-hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(2,6,23,0.08);
+}
+
+/* Global card baseline: ensure consistent 1px gray border and hover state */
+.reveal-card.card-hover-lift,
+.card {
+    border: 1px solid #e5e7eb; /* gray-200 */
+    border-radius: 1rem;
+    background-clip: padding-box;
+    transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms cubic-bezier(.2,.9,.2,1), border-color 180ms ease;
+}
+
+.reveal-card.card-hover-lift:hover,
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(2,6,23,0.08);
+    border-color: #39FF14; /* neon green */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-card.card-hover-lift,
+    .card {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+/* CTA micro-interaction */
+.cta-micro {
+    transition: transform 240ms cubic-bezier(.2,.9,.2,1), box-shadow 240ms ease, filter 240ms ease;
+    will-change: transform, box-shadow;
+}
+.cta-micro:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: saturate(1.02);
+    box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+}
+.cta-micro:active {
+    transform: translateY(0) scale(0.996);
+}
+.cta-micro:focus-visible { outline: 3px solid rgba(57,255,20,0.12); outline-offset: 3px; }
+
+/* Asymmetrical hero heading tweak */
+.asym-hero { display: inline-block; transform: translateX(-6px); }
+
+/* Team page left-offset override — high specificity to reset unexpected offsets */
+.team-reset, .team-reset * {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    left: auto !important;
+    transform: none !important;
+}
+
+/* Org chart background and layout */
+.org-bg{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.85));background-size:cover;background-position:center;padding:2rem;border-radius:0.75rem}
+.org-card img{box-shadow:0 8px 24px rgba(2,6,23,0.08)}
+
+/* Small responsive tweaks */
+@media (max-width: 640px){
+    .org-bg{padding:1rem}
+    .org-chart .w-40{width:40%}
+    .org-chart svg{display:none}
+    .org-chart{gap:1.25rem}
+}
+
+/* SVG stroke style */
+.org-chart svg path{stroke:#9CA3AF;stroke-width:2;fill:none;stroke-linecap:round}
+
+/* subtle draw animation */
+@keyframes drawLine{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+.org-chart svg path{stroke-dasharray:1000;stroke-dashoffset:1000;animation:drawLine 0.9s ease forwards}
+
+/* Branch wrapping and card sizing to prevent overflow */
+.branches{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+@media (min-width:768px){
+    /* Keep the two top branches (Operations & Project Director) on one line */
+    .branches{flex-wrap:nowrap}
+}
+
+/* Node visibility for progressive reveal */
+.org-node{transition:opacity .36s ease, transform .36s ease;opacity:0;transform:translateY(8px)}
+.org-node[data-visible="true"]{opacity:1;transform:none}
+
+/* style for the SVG overlay */
+#org-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+#org-svg path{stroke:#D1D5DB;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.branch{flex:0 1 240px;display:flex;flex-direction:column;align-items:center}
+.org-card{min-width:160px;max-width:220px}
+.org-bg{overflow:hidden}
+
+@media (max-width:768px){
+    .branch{flex:0 1 160px}
+    .org-card{min-width:140px;max-width:180px}
+    .org-bg{overflow-x:auto}
+}
+
+/* Members lineup: force single row on md+ and allow horizontal scroll on small screens */
+.members{align-items:flex-start}
+.members > div{min-width:160px}
+@media (min-width:768px){
+    .members{flex-wrap:nowrap}
+}
+
+html, body {
+    height: 100%;
+}
+
+
+
+
+
+
