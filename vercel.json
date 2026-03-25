@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "cd \"Image resize tool\" && npm install",
+  "buildCommand": "cd \"Image resize tool\" && npm run build",
+  "outputDirectory": "Image resize tool/dist"
+}
