@@ -1,0 +1,8 @@
+{
+  "name": "web-projects-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm --prefix \"Image resize tool\" install && npm --prefix \"Image resize tool\" run build"
+  }
+}
