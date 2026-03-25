@@ -1,4 +1,4 @@
 {
-  "buildCommand": "cd Image\\ resize\\ tool && npm run build",
-  "outputDirectory": "Image resize tool/dist"
+  "rootDirectory": "Image resize tool",
+  "buildCommand": "npm run build"
 }
