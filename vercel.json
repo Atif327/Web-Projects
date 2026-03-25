@@ -1,4 +1,0 @@
-{
-  "rootDirectory": "Image resize tool",
-  "buildCommand": "npm run build"
-}
